@@ -1,0 +1,188 @@
+.dashboard_container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 50px;
+    margin: 3%;
+}
+
+/* Location */
+
+.location{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;    
+}
+
+.location_label{
+    font-size: 1rem;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.location_input{
+    height: 100%;
+    border-radius: 5px;
+    background: #F8F8F7FF; 
+  border-radius: 16px; /* border-xl */
+  border-width: 1px; 
+  border-color: #F8F8F7FF; 
+  border-style: solid; 
+  outline: none; 
+  padding: 10px;
+}
+
+.search_button {
+    cursor: pointer;
+    background-color: #634AFFFF;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    padding :5px;
+    border-width: 1px; 
+  border-color: #634AFFFF; 
+  border-style: solid;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+/* Current Weather */
+
+.current_weather{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.current_weather_parameters{
+    display: flex;
+    justify-content: space-between;
+    min-width: 100%;
+}
+
+.city_summary{
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items: flex-start;
+    min-width: 17%;
+}
+
+.weather_icon{
+    font-size: 2rem;
+    font-weight: normal;
+    color: #8F7EFFFF; 
+}
+
+.weather_now{
+    font-size: 0.7rem;
+    font-weight: bold;
+    margin-bottom: 0;
+    margin-top: 1.5rem;
+}
+
+.city{
+    font-size: 1rem;
+    font-weight: bold; 
+    color: #20272BFF;
+    margin-bottom: 0;
+}
+
+.weather_condition{
+    font-size: 0.8rem; 
+    font-weight: bold; 
+    color: #7F8592FF;
+}
+
+.view_details{
+    cursor: pointer;
+    background-color: #634AFFFF;
+    color: white;
+    font-size: 0.8rem;
+    border-radius: 8px;
+    border-color: #8F7EFFFF; 
+    border-style: solid;
+    padding: 8px;
+}
+
+.city_weather_details{
+    min-width: 17%;
+}
+
+.weather_condition_value{
+    font-size: 1rem; 
+    font-weight: bold; 
+    color: #2A2E31FF;
+}
+
+/* Temerature Trend */
+
+.temperature_trend{
+    width: 100%;
+}
+
+/* Hourly Forecast */
+
+.hourly_forecast{
+    width: 100%;
+}
+
+.hourly_forecasts{
+    display: flex;
+    justify-content: space-between;
+    row-gap: 1rem;
+}
+
+/* Weekly Forecast */
+
+.weekly_forecast{
+    width: 100%;
+}
+
+.weekly_forecasts{
+    display: flex;
+    justify-content: flex-start;
+    column-gap: 0.6rem;
+}
+
+.weekly_forecast_details{
+    flex: 1;
+}
+
+.weekly_forecast_day{
+    font-size: 0.7rem;
+    font-weight: bold;
+    line-height: 0.5rem;
+}
+
+.hourly_forecast_weather_condition{
+    font-size: 0.8rem; 
+    font-weight: bold; 
+    color: #7F8592FF;
+    margin-bottom: 0;
+    line-height: 2rem;
+}
+
+/* Common */
+.card_view{
+    background: #F7F6FFFF; 
+  border-radius: 23.47971095052807px; 
+  border-color: #FFFFFFFF; 
+  border-style: solid; 
+    padding: 1rem;
+}
+
+.flex_center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dashboard_heading{
+    font-size: 1.5rem; 
+    font-weight: bold; 
+    color: #2A2E31FF;
+    margin-bottom: 2rem;
+}
