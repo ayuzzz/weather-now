@@ -7,6 +7,7 @@
     line-height: 30px; 
     font-weight: 700; 
     color: #2A2E31FF;
+    padding-right: 10px;
 }
 
 .logo{
@@ -67,7 +68,6 @@
     border-width: 1px; 
   border-color: #634AFFFF; 
   border-style: solid;
-  margin-right: 10px;
 }
 
 .icon {
