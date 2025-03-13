@@ -143,12 +143,20 @@
 
 .weekly_forecasts{
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
-    column-gap: 0.6rem;
+    row-gap: 0.6rem;
+}
+
+.weekly_forecast_parameters{
+    display: flex;
+    min-width: 100%;
+    column-gap: 1rem;
 }
 
 .weekly_forecast_details{
     flex: 1;
+
 }
 
 .weekly_forecast_day{

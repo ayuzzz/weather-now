@@ -1,58 +1,61 @@
+import { HourlyForecasts } from "@/models/dashboard";
 import styles from "@/styles/dashboard.module.css";
-import {
-  TiWeatherSunny,
-  TiWeatherShower,
-  TiWeatherPartlySunny,
-  TiWeatherSnow,
-} from "react-icons/ti";
+import WeatherConditionIcon from "./weatherConditionIcon";
+import { useState } from "react";
 
-const HourlyForecast = () => {
-  const temperatureFahrenheit = 72;
-  const temperatureUnit = "F";
+const HourlyForecast = ({
+  hourlyWeatherData,
+}: {
+  hourlyWeatherData: HourlyForecasts | undefined;
+}) => {
+  const [temperatureUnit, setTemperatureUnit] = useState("°C");
+
+  const now = new Date();
+
+  // Get hour of the day in IST (12-hour format)
+  const todayHour = new Intl.DateTimeFormat("en-IN", {
+    timeZone: "Asia/Kolkata",
+    hour: "numeric",
+    hour12: true,
+  }).format(now);
+
+  let currentWeatherDataIndex = 0;
+  let lastWeatherDataIndex = 0;
+
+  if (hourlyWeatherData != undefined) {
+    currentWeatherDataIndex = hourlyWeatherData.time.findIndex(
+      (value) => value === todayHour
+    );
+
+    lastWeatherDataIndex = currentWeatherDataIndex + 5;
+  }
 
   return (
     <div className={`${styles.hourly_forecast}`}>
       <p className={styles.dashboard_heading}>Hourly Forecast</p>
       <div className={styles.hourly_forecasts}>
-        <div className={`${styles.card_view} ${styles.city_weather_details}`}>
-          <TiWeatherSunny className={styles.weather_icon} />
-          <p className={styles.weather_condition_value}>Now</p>
-          <p className={styles.weather_condition}>
-            {temperatureFahrenheit} {temperatureUnit}
-          </p>
-        </div>
-
-        <div className={`${styles.card_view} ${styles.city_weather_details}`}>
-          <TiWeatherPartlySunny className={styles.weather_icon} />
-          <p className={styles.weather_condition_value}>1 PM</p>
-          <p className={styles.weather_condition}>
-            {temperatureFahrenheit} {temperatureUnit}
-          </p>
-        </div>
-
-        <div className={`${styles.card_view} ${styles.city_weather_details}`}>
-          <TiWeatherSnow className={styles.weather_icon} />
-          <p className={styles.weather_condition_value}>2 PM</p>
-          <p className={styles.weather_condition}>
-            {temperatureFahrenheit} {temperatureUnit}
-          </p>
-        </div>
-
-        <div className={`${styles.card_view} ${styles.city_weather_details}`}>
-          <TiWeatherShower className={styles.weather_icon} />
-          <p className={styles.weather_condition_value}>3 PM</p>
-          <p className={styles.weather_condition}>
-            {temperatureFahrenheit} {temperatureUnit}
-          </p>
-        </div>
-
-        <div className={`${styles.card_view} ${styles.city_weather_details}`}>
-          <TiWeatherShower className={styles.weather_icon} />
-          <p className={styles.weather_condition_value}>4 PM</p>
-          <p className={styles.weather_condition}>
-            {temperatureFahrenheit} {temperatureUnit}
-          </p>
-        </div>
+        {hourlyWeatherData === undefined
+          ? "Loading ..."
+          : hourlyWeatherData.time
+              .slice(currentWeatherDataIndex, lastWeatherDataIndex)
+              .map((hour, index) => (
+                <div
+                  key={index}
+                  className={`${styles.card_view} ${styles.city_weather_details}`}
+                >
+                  <WeatherConditionIcon
+                    code={hourlyWeatherData.weather_code[index]}
+                  />
+                  <p className={styles.weather_condition_value}>
+                    {" "}
+                    {hour === todayHour ? "NOW " : hour}{" "}
+                  </p>
+                  <p className={styles.weather_condition}>
+                    {hourlyWeatherData.temperature_2m[index]}
+                    {temperatureUnit}
+                  </p>
+                </div>
+              ))}
       </div>
     </div>
   );
