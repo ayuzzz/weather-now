@@ -4,3 +4,8 @@ body{
     font-family: Archivo;
     padding: 0.1%;
 }
+
+.leaflet-div-icon {
+    background-color: transparent !important;
+    border: none !important;
+  }
