@@ -25,6 +25,7 @@ export interface CurrentForecasts {
   wind_direction_10m: number; // 176
   aqi: number; // 63
   weather_code: number;
+  rain: number;
 }
 
 export interface HourlyForecasts {

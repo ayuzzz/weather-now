@@ -6,3 +6,9 @@ export interface City {
   timezone: string;
   country: string;
 }
+
+export interface NearByCity {
+  name: string;
+  latitude: number;
+  longitude: number;
+}

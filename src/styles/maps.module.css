@@ -1,0 +1,45 @@
+.maps_container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 50px;
+    margin: 3%;
+}
+
+.card_view{
+    background: #F7F6FFFF; 
+  border-radius: 23.47971095052807px; 
+  border-color: #FFFFFFFF; 
+  border-style: solid; 
+  opacity: 0.8;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.weather_icon{
+    font-size: 1rem;
+    font-weight: bold;
+    color: blue;
+    opacity: 0.9;
+}
+
+.weather_icon_low{
+    font-size: 1rem;
+    font-weight: bold;
+    color: green;
+    opacity: 0.9;
+}
+
+.weather_icon_moderate{
+    font-size: 1rem;
+    font-weight: bold;
+    color: orange;
+    opacity: 0.9;
+}
+
+.weather_icon_high{
+    font-size: 1rem;
+    font-weight: bold;
+    color: red;
+    opacity: 0.9;
+}
