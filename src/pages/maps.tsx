@@ -17,7 +17,7 @@ const Maps = () => {
   return (
     <div className={StyleSheet.maps_container}>
       <Location setCity={setCity} />
-      <NearbyCitiesMap />
+      <NearbyCitiesMap city={city} />
     </div>
   );
 };

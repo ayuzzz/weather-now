@@ -17,8 +17,29 @@
 }
 
 .weather_icon{
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: bold;
     color: blue;
+    opacity: 0.9;
+}
+
+.weather_icon_low{
+    font-size: 1rem;
+    font-weight: bold;
+    color: green;
+    opacity: 0.9;
+}
+
+.weather_icon_moderate{
+    font-size: 1rem;
+    font-weight: bold;
+    color: orange;
+    opacity: 0.9;
+}
+
+.weather_icon_high{
+    font-size: 1rem;
+    font-weight: bold;
+    color: red;
     opacity: 0.9;
 }
