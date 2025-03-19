@@ -1,6 +1,5 @@
 "use client";
 
-import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MdLightMode, MdOutlineSettings } from "react-icons/md";
@@ -8,9 +7,10 @@ import { HiMoon } from "react-icons/hi2";
 import { GoHome } from "react-icons/go";
 import { LiaMapSolid } from "react-icons/lia";
 import styles from "@/styles/navbar.module.css";
+import { useAppContext } from "@/contexts/appContext";
 
 const Navbar = () => {
-  const [theme, setTheme] = useState("Light");
+  const { theme, setTheme } = useAppContext();
 
   return (
     <div className={styles.navbar}>
@@ -53,12 +53,12 @@ const Navbar = () => {
           className={`${styles.btn_theme_toggle} ${styles.flex_center}`}
           onClick={toggleTheme}
         >
-          {theme === "Light" ? (
+          {theme === "light" ? (
             <HiMoon className={styles.icon} />
           ) : (
             <MdLightMode className={styles.icon} />
           )}
-          {theme === "Light" ? "Dark" : "Light"} Mode
+          {theme === "light" ? "dark" : "light"} mode
         </button>
       </div>
     </div>
@@ -66,10 +66,10 @@ const Navbar = () => {
 
   function toggleTheme(): void {
     // If the current theme is light, set it to dark
-    if (theme === "Light") {
-      setTheme("Dark");
+    if (theme === "light") {
+      setTheme("dark");
     } else {
-      setTheme("Light");
+      setTheme("light");
     }
   }
 };

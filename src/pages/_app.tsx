@@ -9,6 +9,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <title>Weather Now</title>
       </Head>
+
       <RootLayout>
         <Component {...pageProps} />
       </RootLayout>
