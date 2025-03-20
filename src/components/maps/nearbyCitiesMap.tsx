@@ -3,13 +3,15 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import CityMarkers, { CityMarker } from "./cityMarkers";
 import { useEffect, useState } from "react";
-import { City } from "@/models/city";
 import { fetchMapData, fetchTopCities } from "@/utils/fetchWeatherData";
+import { useAppContext } from "@/contexts/appContext";
 
-const WeatherMap = ({ city }: { city: City }) => {
+const WeatherMap = () => {
+  const { currentCity, theme } = useAppContext();
+
   const [center, setMapCenter] = useState<[number, number]>([
-    city.latitude,
-    city.longitude,
+    currentCity.latitude,
+    currentCity.longitude,
   ]);
   const zoom = 5;
 
@@ -18,12 +20,12 @@ const WeatherMap = ({ city }: { city: City }) => {
   useEffect(() => {
     debugger;
     async function fetchNearbyCitiesAndMapData() {
-      setMapCenter([city?.latitude, city?.longitude]);
+      setMapCenter([currentCity.latitude, currentCity.longitude]);
 
       let latitudes: number[] = [];
       let longitudes: number[] = [];
 
-      const topCities = await fetchTopCities(city.country);
+      const topCities = await fetchTopCities(currentCity.country);
 
       topCities.forEach((city) => {
         latitudes.push(city.latitude);
@@ -46,7 +48,7 @@ const WeatherMap = ({ city }: { city: City }) => {
     }
 
     fetchNearbyCitiesAndMapData();
-  }, [city?.latitude, city?.longitude, city?.country]);
+  }, [currentCity.latitude, currentCity.longitude, currentCity.country]);
 
   return cityWeatherData === undefined || cityWeatherData.length === 0 ? (
     "Loading Map Data ..."
@@ -56,8 +58,16 @@ const WeatherMap = ({ city }: { city: City }) => {
       zoom={zoom}
       style={{ height: "500px", width: "100%" }}
     >
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      <CityMarkers city={city} cities={cityWeatherData} />
+      {theme === "light" ? (
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.de/">OSM DE</a>'
+        />
+      ) : (
+        <TileLayer url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png" />
+      )}
+
+      <CityMarkers cities={cityWeatherData} />
     </MapContainer>
   );
 };

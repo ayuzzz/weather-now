@@ -6,7 +6,7 @@ import { FaWind } from "react-icons/fa";
 import { ReactElement, useEffect, useState } from "react";
 import styles from "@/styles/maps.module.css";
 import { renderToString } from "react-dom/server";
-import { City } from "@/models/city";
+import { useAppContext } from "@/contexts/appContext";
 
 export interface CityMarker {
   name: string;
@@ -16,18 +16,13 @@ export interface CityMarker {
   rainfall: number;
 }
 
-const CityMarkers = ({
-  city,
-  cities,
-}: {
-  city: City;
-  cities: CityMarker[];
-}) => {
+const CityMarkers = ({ cities }: { cities: CityMarker[] }) => {
   const map = useMap();
   const [Leaflet, setLeaflet] = useState<typeof import("leaflet") | null>(null);
   const [layerControl, setLayerControl] = useState<L.Control.Layers | null>(
     null
   );
+  const { currentCity } = useAppContext();
 
   useEffect(() => {
     import("leaflet").then((L) => setLeaflet(L));
@@ -35,7 +30,7 @@ const CityMarkers = ({
 
   useEffect(() => {
     if (!Leaflet) return;
-    map.setView([city.latitude, city.longitude], 5);
+    map.setView([currentCity.latitude, currentCity.longitude], 5);
 
     // Remove all previous markers and layer groups
     map.eachLayer((layer: L.Layer) => {
