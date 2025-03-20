@@ -1,9 +1,11 @@
-import { City, NearByCities, NearByCity } from "@/models/city";
+import { WeatherUnitSettings } from "@/models/settings";
+import { City, NearByCity } from "@/models/city";
 import DashboardWeatherData from "@/models/dashboard";
 
 export async function fetchWeatherData(
   latitude: number,
-  longitude: number
+  longitude: number,
+  units: WeatherUnitSettings
 ): Promise<DashboardWeatherData> {
   const params = {
     latitude: latitude,
@@ -23,8 +25,8 @@ export async function fetchWeatherData(
       "temperature_2m_min",
       "precipitation_sum",
     ],
-    temperature_unit: "celsius",
-    wind_speed_unit: "mph",
+    temperature_unit: units.temperatureUnit === "°C" ? "celsius" : "fahrenheit",
+    wind_speed_unit: units.windSpeedUnit,
     timezone: "GMT",
   };
 
@@ -36,7 +38,7 @@ export async function fetchWeatherData(
 
   try {
     const weatherDataResponse = await fetch(requestUrl);
-    const airQualityData = await getAqi(latitude, longitude);
+    const airQualityData = await getAqi(latitude, longitude, units.aqiUnit);
 
     const data = await weatherDataResponse.json();
 
@@ -82,11 +84,15 @@ export async function fetchWeatherData(
   }
 }
 
-async function getAqi(latitude: number, longitude: number): Promise<number> {
+async function getAqi(
+  latitude: number,
+  longitude: number,
+  aqiUnit: string
+): Promise<number> {
   const airQualityParams = {
     latitude: latitude,
     longitude: longitude,
-    current: "european_aqi",
+    current: aqiUnit,
     forecast_days: 1,
     timezone: "GMT",
   };
@@ -100,7 +106,7 @@ async function getAqi(latitude: number, longitude: number): Promise<number> {
   const airQualityResponse = await fetch(airQualityRequestUrl);
   const airQualityData = await airQualityResponse.json();
 
-  return airQualityData.current.european_aqi;
+  return airQualityData.current.european_aqi ?? airQualityData.current.us_aqi;
 }
 
 export async function fetchCity(query: string): Promise<City> {
@@ -137,14 +143,16 @@ export async function fetchTopCities(country: string): Promise<NearByCity[]> {
 
 export async function fetchMapData(
   latitude: number[],
-  longitude: number[]
+  longitude: number[],
+  weatherUnits: WeatherUnitSettings
 ): Promise<DashboardWeatherData[]> {
   const params = {
     latitude: latitude.join(","),
     longitude: longitude.join(","),
     current: ["temperature_2m", "rain", "wind_speed_10m", "weather_code"],
-    temperature_unit: "celsius",
-    wind_speed_unit: "mph",
+    temperature_unit:
+      weatherUnits.temperatureUnit === "°C" ? "celsius" : "fahrenheit",
+    wind_speed_unit: weatherUnits.windSpeedUnit,
     timezone: "GMT",
     forecast_days: 1,
   };

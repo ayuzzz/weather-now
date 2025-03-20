@@ -16,14 +16,15 @@ export default function Dashboard() {
     {} as DashboardWeatherData
   );
 
-  const { currentCity } = useAppContext();
+  const { currentCity, weatherUnits } = useAppContext();
 
   useEffect(() => {
     async function getWeather() {
       try {
         const data = await fetchWeatherData(
           currentCity.latitude,
-          currentCity.longitude
+          currentCity.longitude,
+          weatherUnits
         );
         setWeatherData(data);
       } catch (error) {

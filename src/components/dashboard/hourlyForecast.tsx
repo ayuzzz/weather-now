@@ -1,14 +1,14 @@
 import { HourlyForecasts } from "@/models/dashboard";
 import styles from "@/styles/dashboard.module.css";
 import WeatherConditionIcon from "./weatherConditionIcon";
-import { useState } from "react";
+import { useAppContext } from "@/contexts/appContext";
 
 const HourlyForecast = ({
   hourlyWeatherData,
 }: {
   hourlyWeatherData: HourlyForecasts | undefined;
 }) => {
-  const [temperatureUnit, setTemperatureUnit] = useState("°C");
+  const { weatherUnits } = useAppContext();
 
   const now = new Date();
 
@@ -52,7 +52,7 @@ const HourlyForecast = ({
                   </p>
                   <p className={styles.weather_condition}>
                     {hourlyWeatherData.temperature_2m[index]}
-                    {temperatureUnit}
+                    {weatherUnits.temperatureUnit}
                   </p>
                 </div>
               ))}

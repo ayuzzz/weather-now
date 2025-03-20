@@ -4,7 +4,7 @@ import { DailyForecasts } from "@/models/dashboard";
 import WeatherConditionIcon, {
   weatherCodeToIconMapping,
 } from "./weatherConditionIcon";
-import { useState } from "react";
+import { useAppContext } from "@/contexts/appContext";
 
 const WeeklyForecast = ({
   dailyWeatherData,
@@ -17,7 +17,7 @@ const WeeklyForecast = ({
     weekday: "long",
   }).format(new Date());
 
-  const [temperatureUnit, setTemperatureUnit] = useState("°C");
+  const { weatherUnits } = useAppContext();
 
   return (
     <div className={`${styles.weekly_forecast}`}>
@@ -40,11 +40,11 @@ const WeeklyForecast = ({
                     weatherCodeToIconMapping[
                       dailyWeatherData.weather_code[index]
                     ][0]
-                  } | High: ${
-                    dailyWeatherData.temperature_2m_max[index]
-                  }${temperatureUnit} | Low: ${
-                    dailyWeatherData.temperature_2m_min[index]
-                  }${temperatureUnit} | ${
+                  } | High: ${dailyWeatherData.temperature_2m_max[index]}${
+                    weatherUnits.temperatureUnit
+                  } | Low: ${dailyWeatherData.temperature_2m_min[index]}${
+                    weatherUnits.temperatureUnit
+                  } | ${
                     dailyWeatherData.precipitation_sum[index]
                   }% precipitation`}</p>
                 </div>

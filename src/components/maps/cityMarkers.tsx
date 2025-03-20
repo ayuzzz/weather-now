@@ -22,7 +22,7 @@ const CityMarkers = ({ cities }: { cities: CityMarker[] }) => {
   const [layerControl, setLayerControl] = useState<L.Control.Layers | null>(
     null
   );
-  const { currentCity } = useAppContext();
+  const { currentCity, weatherUnits } = useAppContext();
 
   useEffect(() => {
     import("leaflet").then((L) => setLeaflet(L));
@@ -75,18 +75,18 @@ const CityMarkers = ({ cities }: { cities: CityMarker[] }) => {
 
       createMarker(
         city.temperature,
-        temperatureIcon(city.temperature),
+        temperatureIcon(city.temperature, weatherUnits.temperatureUnit),
         temperatureLayer,
         -20,
-        "°C",
+        weatherUnits.temperatureUnit,
         "🌡️"
       );
       createMarker(
         city.windSpeed,
-        windSpeedIcon(city.windSpeed),
+        windSpeedIcon(city.windSpeed, weatherUnits.windSpeedUnit),
         windLayer,
         0,
-        "mph",
+        weatherUnits.windSpeedUnit,
         "💨"
       );
       createMarker(
@@ -124,20 +124,26 @@ const CityMarkers = ({ cities }: { cities: CityMarker[] }) => {
   return null;
 };
 
-function temperatureIcon(value: number): ReactElement {
-  if (value < 10) {
+function temperatureIcon(value: number, unit: string): ReactElement {
+  if ((value < 10 && unit === "°C") || (value < 50 && unit === "°C")) {
     return <IoMdSunny className={styles.weather_icon_low} />;
-  } else if (value >= 10 && value < 25) {
+  } else if (
+    (value >= 10 && value < 25 && unit === "°C") ||
+    (value >= 50 && value < 77 && unit === "°F")
+  ) {
     return <IoMdSunny className={styles.weather_icon_moderate} />;
   } else {
     return <IoMdSunny className={styles.weather_icon_high} />;
   }
 }
 
-function windSpeedIcon(value: number): ReactElement {
-  if (value < 10) {
+function windSpeedIcon(value: number, unit: string): ReactElement {
+  if ((value < 10 && unit === "mph") || (value < 15 && unit === "km/h")) {
     return <FaWind className={styles.weather_icon_low} />;
-  } else if (value >= 10 && value < 25) {
+  } else if (
+    (value >= 10 && value < 25 && unit === "mph") ||
+    (value >= 15 && value < 40 && unit === "km/h")
+  ) {
     return <FaWind className={styles.weather_icon_moderate} />;
   } else {
     return <FaWind className={styles.weather_icon_high} />;
