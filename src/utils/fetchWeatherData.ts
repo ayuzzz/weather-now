@@ -26,7 +26,7 @@ export async function fetchWeatherData(
       "precipitation_sum",
     ],
     temperature_unit: units.temperatureUnit === "°C" ? "celsius" : "fahrenheit",
-    wind_speed_unit: units.windSpeedUnit,
+    ...(units.windSpeedUnit === "km/h" ? {} : { wind_speed_unit: "mph" }),
     timezone: "GMT",
   };
 
@@ -152,7 +152,9 @@ export async function fetchMapData(
     current: ["temperature_2m", "rain", "wind_speed_10m", "weather_code"],
     temperature_unit:
       weatherUnits.temperatureUnit === "°C" ? "celsius" : "fahrenheit",
-    wind_speed_unit: weatherUnits.windSpeedUnit,
+    ...(weatherUnits.windSpeedUnit === "km/h"
+      ? {}
+      : { wind_speed_unit: "mph" }),
     timezone: "GMT",
     forecast_days: 1,
   };

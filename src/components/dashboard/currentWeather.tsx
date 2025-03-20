@@ -70,7 +70,7 @@ const CurrentWeather = ({
             <CiCalculator2 className={styles.weather_icon} />
             <p className={styles.weather_condition_value}>AQI</p>
             <p className={styles.weather_condition}>
-              {getAirQuality(currentWeatherData?.aqi)} (
+              {getAirQuality(currentWeatherData?.aqi, weatherUnits.aqiUnit)} (
               {currentWeatherData?.aqi})
             </p>
           </div>
@@ -89,13 +89,22 @@ function getWindDirection(degrees: number): string {
   return directions[index];
 }
 
-function getAirQuality(aqi: number) {
-  if (aqi < 20) return "Good";
-  else if (aqi >= 20 && aqi < 40) return "Fair";
-  else if (aqi >= 40 && aqi < 60) return "Moderate";
-  else if (aqi >= 60 && aqi < 80) return "Poor";
-  else if (aqi >= 80 && aqi < 100) return "Very Poor";
-  else return "Extremely Poor";
+function getAirQuality(aqi: number, unit: string): string {
+  if (unit === "european_aqi") {
+    if (aqi < 20) return "Good";
+    else if (aqi >= 20 && aqi < 40) return "Fair";
+    else if (aqi >= 40 && aqi < 60) return "Moderate";
+    else if (aqi >= 60 && aqi < 80) return "Poor";
+    else if (aqi >= 80 && aqi < 100) return "Very Poor";
+    else return "Extremely Poor";
+  } else {
+    if (aqi <= 50) return "Good";
+    else if (aqi > 50 && aqi <= 100) return "Moderate";
+    else if (aqi > 100 && aqi <= 150) return "Unhealthy for Sensitive Groups";
+    else if (aqi > 150 && aqi <= 200) return "Unhealthy";
+    else if (aqi > 200 && aqi <= 300) return "Very Unhealthy";
+    else return "Hazardous";
+  }
 }
 
 export default CurrentWeather;
