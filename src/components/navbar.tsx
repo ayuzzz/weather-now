@@ -30,19 +30,19 @@ const Navbar = () => {
       </div>
       <div className={styles.nav_items}>
         <div className={styles.flex_center}>
-          <GoHome />
+          <GoHome className={styles.nav_icon} />
           <Link className={styles.nav_item} href="/">
             Dashboard
           </Link>
         </div>
         <div className={styles.flex_center}>
-          <LiaMapSolid />
+          <LiaMapSolid className={styles.nav_icon} />
           <Link className={styles.nav_item} href="/maps">
             Maps
           </Link>
         </div>
         <div className={styles.flex_center}>
-          <MdOutlineSettings />
+          <MdOutlineSettings className={styles.nav_icon} />
           <Link className={styles.nav_item} href="/settings">
             Settings
           </Link>
@@ -68,8 +68,10 @@ const Navbar = () => {
     // If the current theme is light, set it to dark
     if (theme === "light") {
       setTheme("dark");
+      document.documentElement.classList.add("dark");
     } else {
       setTheme("light");
+      document.documentElement.classList.remove("dark");
     }
   }
 };

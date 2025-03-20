@@ -23,19 +23,20 @@
 .location_input{
     height: 100%;
     border-radius: 5px;
-    background: #F8F8F7FF; 
+    background: var(--card-view-background-color); 
   border-radius: 16px; /* border-xl */
   border-width: 1px; 
-  border-color: #F8F8F7FF; 
+  border-color: var(--card-view-border-color); 
   border-style: solid; 
   outline: none; 
   padding: 10px;
+  color: var(--text-color);
 }
 
 .search_button {
     cursor: pointer;
     background-color: #634AFFFF;
-    color: white;
+    color: var(--btn-text-color);
     font-size: 1.2rem;
     border-radius: 10px;
     padding :5px;
@@ -81,30 +82,31 @@
     font-weight: bold;
     margin-bottom: 0;
     margin-top: 1.5rem;
+    color: var(--text-color);
 }
 
 .city{
     font-size: 1rem;
     font-weight: bold; 
-    color: #20272BFF;
+    color: var(--text-color);
     margin-bottom: 0;
 }
 
 .weather_condition{
     font-size: 0.8rem; 
     font-weight: bold; 
-    color: #7F8592FF;
+    color: var(--faint-text-color);
 }
 
 .view_details{
     cursor: pointer;
     background-color: #634AFFFF;
-    color: white;
     font-size: 0.8rem;
     border-radius: 8px;
     border-color: #8F7EFFFF; 
     border-style: solid;
     padding: 8px;
+    color: var(--btn-text-color);
 }
 
 .city_weather_details{
@@ -114,7 +116,7 @@
 .weather_condition_value{
     font-size: 1rem; 
     font-weight: bold; 
-    color: #2A2E31FF;
+    color: var(--text-color)
 }
 
 /* Temerature Trend */
@@ -163,21 +165,22 @@
     font-size: 0.7rem;
     font-weight: bold;
     line-height: 0.5rem;
+    color: var(--text-color);
 }
 
 .hourly_forecast_weather_condition{
     font-size: 0.8rem; 
     font-weight: bold; 
-    color: #7F8592FF;
+    color: var(--faint-text-color);
     margin-bottom: 0;
     line-height: 2rem;
 }
 
 /* Common */
 .card_view{
-    background: #F7F6FFFF; 
+    background: var(--card-view-background-color); 
   border-radius: 23.47971095052807px; 
-  border-color: #FFFFFFFF; 
+  border-color: var(--card-view-border-color); 
   border-style: solid; 
     padding: 1rem;
 }
@@ -191,6 +194,6 @@
 .dashboard_heading{
     font-size: 1.5rem; 
     font-weight: bold; 
-    color: #2A2E31FF;
+    color: var(--text-color);
     margin-bottom: 2rem;
 }
