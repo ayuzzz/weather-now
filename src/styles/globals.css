@@ -1,8 +1,44 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap");
 
+:root {
+    --bg-color: #ffffff;
+    --text-color: #2A2E31FF;
+    --link-color: #2A2E31FF;
+    --btn-bg: #634AFFFF;
+    --btn-text-color: #ffffff;
+    --card-view-background-color:#F7F6FFFF;
+    --card-view-border-color: #ffffff;
+    --faint-text-color: #7F8592FF;
+}
+
+.dark {
+    --bg-color: #2A2E31FF;
+    --text-color: rgb(245, 209, 10);
+    --link-color: #F2F2F2;
+    --btn-bg: #F2F2F2;
+    --btn-text-color: var(--text-color);
+    --card-view-background-color: #3C4D5A;
+    --card-view-border-color: #086c62;
+    --faint-text-color: #8cded6fa;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
 body{
+    background-color: var(--bg-color);
+    color: var(--text-color);
     font-family: Archivo;
     padding: 0.1%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1{
+    color: var(--text-color);
 }
 
 .leaflet-div-icon {
