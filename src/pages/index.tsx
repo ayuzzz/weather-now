@@ -9,25 +9,22 @@ import WeeklyForecast from "@/components/dashboard/weeklyForecast";
 import { fetchWeatherData } from "@/utils/fetchWeatherData";
 import { useEffect, useState } from "react";
 import DashboardWeatherData from "@/models/dashboard";
-import { City } from "@/models/city";
+import { useAppContext } from "@/contexts/appContext";
 
 export default function Dashboard() {
   const [weatherData, setWeatherData] = useState<DashboardWeatherData>(
     {} as DashboardWeatherData
   );
-  const [city, setCity] = useState<City>({
-    id: 1277333,
-    name: "Bengaluru",
-    latitude: 12.97194,
-    longitude: 77.59369,
-    timezone: "Asia/Kolkata",
-    country: "India",
-  });
+
+  const { currentCity } = useAppContext();
 
   useEffect(() => {
     async function getWeather() {
       try {
-        const data = await fetchWeatherData(city.latitude, city.longitude);
+        const data = await fetchWeatherData(
+          currentCity.latitude,
+          currentCity.longitude
+        );
         setWeatherData(data);
       } catch (error) {
         console.error("Failed to fetch weather data", error);
@@ -35,13 +32,12 @@ export default function Dashboard() {
     }
 
     getWeather();
-  }, [city]);
+  }, [currentCity]);
 
   return (
     <div className={styles.dashboard_container}>
-      <Location setCity={setCity} />
+      <Location />
       <CurrentWeather
-        cityName={city.name}
         currentWeatherData={weatherData?.current}
         dailyWeatherData={weatherData?.daily}
       />

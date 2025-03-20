@@ -7,17 +7,17 @@ import { CurrentForecasts, DailyForecasts } from "@/models/dashboard";
 import WeatherConditionIcon, {
   weatherCodeToIconMapping,
 } from "@/components/dashboard/weatherConditionIcon";
+import { useAppContext } from "@/contexts/appContext";
 
 const CurrentWeather = ({
-  cityName,
   currentWeatherData,
   dailyWeatherData,
 }: {
-  cityName: string;
   currentWeatherData: CurrentForecasts | undefined;
   dailyWeatherData: DailyForecasts | undefined;
 }) => {
   const [temperatureUnit, setTemperatureUnit] = useState("°C");
+  const { currentCity } = useAppContext();
 
   return (
     <div className={styles.current_weather}>
@@ -30,7 +30,7 @@ const CurrentWeather = ({
           <div className={`${styles.card_view} ${styles.city_summary}`}>
             <WeatherConditionIcon code={dailyWeatherData?.weather_code[0]} />
             <p className={styles.weather_now}>NOW</p>
-            <p className={styles.city}>{cityName}</p>
+            <p className={styles.city}>{currentCity?.name}</p>
             <p className={styles.weather_condition}>
               {weatherCodeToIconMapping[dailyWeatherData?.weather_code[0]][0]}
               {" | "}

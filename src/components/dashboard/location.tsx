@@ -1,21 +1,20 @@
 import styles from "@/styles/dashboard.module.css";
 import { TbMapPinSearch } from "react-icons/tb";
 import { useState } from "react";
-import { City } from "@/models/city";
 import { fetchCity } from "@/utils/fetchWeatherData";
+import { useAppContext } from "@/contexts/appContext";
 
-const Location = ({
-  setCity,
-}: {
-  setCity: React.Dispatch<React.SetStateAction<City>>;
-}) => {
-  const [searchQuery, setSearchQuery] = useState("Bengaluru");
+const Location = () => {
+  const { currentCity, setCurrentCity } = useAppContext();
+  const [searchQuery, setSearchQuery] = useState(
+    currentCity?.name ?? "Bengaluru"
+  );
 
   const setFixedCityDetails = async function () {
     try {
       const fetchedCity = await fetchCity(searchQuery);
       if (fetchedCity !== undefined) {
-        setCity(fetchedCity);
+        setCurrentCity(fetchedCity);
       } else {
         alert("City not found");
       }
