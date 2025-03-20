@@ -2,12 +2,17 @@
 
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import { City } from "@/models/city";
+import { WeatherUnitSettings } from "@/models/settings";
 
 interface AppContextType {
   theme: "light" | "dark";
   setTheme: (theme: "light" | "dark") => void;
+
   currentCity: City;
   setCurrentCity: (city: City) => void;
+
+  weatherUnits: WeatherUnitSettings;
+  setWeatherUnits: (units: WeatherUnitSettings) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -22,10 +27,22 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     timezone: "Asia/Kolkata",
     country: "India",
   });
+  const [weatherUnits, setWeatherUnits] = useState<WeatherUnitSettings>({
+    temperatureUnit: "°C",
+    windSpeedUnit: "mph",
+    aqiUnit: "european_aqi",
+  });
 
   return (
     <AppContext.Provider
-      value={{ theme, setTheme, currentCity, setCurrentCity }}
+      value={{
+        theme,
+        setTheme,
+        currentCity,
+        setCurrentCity,
+        weatherUnits,
+        setWeatherUnits,
+      }}
     >
       {children}
     </AppContext.Provider>

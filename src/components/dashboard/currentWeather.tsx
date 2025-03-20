@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaTemperatureLow, FaWind } from "react-icons/fa";
 import { WiHumidity } from "react-icons/wi";
 import { CiCalculator2 } from "react-icons/ci";
@@ -16,8 +16,7 @@ const CurrentWeather = ({
   currentWeatherData: CurrentForecasts | undefined;
   dailyWeatherData: DailyForecasts | undefined;
 }) => {
-  const [temperatureUnit, setTemperatureUnit] = useState("°C");
-  const { currentCity } = useAppContext();
+  const { currentCity, weatherUnits } = useAppContext();
 
   return (
     <div className={styles.current_weather}>
@@ -35,7 +34,7 @@ const CurrentWeather = ({
               {weatherCodeToIconMapping[dailyWeatherData?.weather_code[0]][0]}
               {" | "}
               Feels like {currentWeatherData?.apparent_temperature}
-              {temperatureUnit}
+              {weatherUnits.temperatureUnit}
             </p>
             <button className={styles.view_details}>View Details</button>
           </div>
@@ -43,12 +42,13 @@ const CurrentWeather = ({
             <FaTemperatureLow className={styles.weather_icon} />
             <p className={styles.weather_condition_value}>
               {currentWeatherData?.temperature_2m}
-              {temperatureUnit}
+              {weatherUnits.temperatureUnit}
             </p>
             <p className={styles.weather_condition}>
               High: {dailyWeatherData?.temperature_2m_max[0]}
-              {temperatureUnit} | Low: {dailyWeatherData?.temperature_2m_min[0]}
-              {temperatureUnit}
+              {weatherUnits.temperatureUnit} | Low:{" "}
+              {dailyWeatherData?.temperature_2m_min[0]}
+              {weatherUnits.temperatureUnit}
             </p>
           </div>
           <div className={`${styles.card_view} ${styles.city_weather_details}`}>
@@ -62,7 +62,7 @@ const CurrentWeather = ({
             <FaWind className={styles.weather_icon} />
             <p className={styles.weather_condition_value}>Wind</p>
             <p className={styles.weather_condition}>
-              {currentWeatherData?.wind_speed_10m} mph{" "}
+              {currentWeatherData?.wind_speed_10m} {weatherUnits.windSpeedUnit}{" "}
               {getWindDirection(currentWeatherData?.wind_direction_10m)}
             </p>
           </div>

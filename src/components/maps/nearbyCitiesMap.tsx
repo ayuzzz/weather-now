@@ -7,7 +7,7 @@ import { fetchMapData, fetchTopCities } from "@/utils/fetchWeatherData";
 import { useAppContext } from "@/contexts/appContext";
 
 const WeatherMap = () => {
-  const { currentCity, theme } = useAppContext();
+  const { currentCity, theme, weatherUnits } = useAppContext();
 
   const [center, setMapCenter] = useState<[number, number]>([
     currentCity.latitude,
@@ -32,7 +32,11 @@ const WeatherMap = () => {
         longitudes.push(city.longitude);
       });
 
-      const weatherData = await fetchMapData(latitudes, longitudes);
+      const weatherData = await fetchMapData(
+        latitudes,
+        longitudes,
+        weatherUnits
+      );
       setCityWeatherData(
         weatherData.map(
           (city, index) =>
