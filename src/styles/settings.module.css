@@ -11,13 +11,13 @@
     font-size: 1.5rem; 
     font-weight: bold; 
     color: var(--text-color);
+    margin-top: 2rem;
     margin-bottom: 2rem;
 }
 
 .card_view{
     background: var(--card-view-background-color); 
     width: 98%;
-    /* border-radius: 23.47971095052807px; */
 padding: 1rem;
 }
 

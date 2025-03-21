@@ -36,7 +36,6 @@ const CurrentWeather = ({
               Feels like {currentWeatherData?.apparent_temperature}
               {weatherUnits.temperatureUnit}
             </p>
-            <button className={styles.view_details}>View Details</button>
           </div>
           <div className={`${styles.card_view} ${styles.city_weather_details}`}>
             <FaTemperatureLow className={styles.weather_icon} />

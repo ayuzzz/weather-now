@@ -58,7 +58,6 @@ const Navbar = () => {
           ) : (
             <MdLightMode className={styles.icon} />
           )}
-          {theme === "light" ? "dark" : "light"} mode
         </button>
       </div>
     </div>
