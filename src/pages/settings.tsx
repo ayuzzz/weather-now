@@ -3,13 +3,13 @@ import styles from "@/styles/settings.module.css";
 import { useAppContext } from "@/contexts/appContext";
 
 const Settings = () => {
-  const { weatherUnits, setWeatherUnits } = useAppContext();
+  const { weatherUnits, setWeatherUnits, theme, setTheme } = useAppContext();
   return (
     <div className={styles.settings_container}>
-      <h1 className={styles.settings_heading}>Settings</h1>
+      <h1 className={styles.settings_heading}>Units</h1>
 
       <div className={`${styles.card_view} ${styles.settings_toggle}`}>
-        <h2>Temperature Units</h2>
+        <h3>Temperature Units</h3>
         <div className={styles.radio_group}>
           <div className={styles.unit_toggle}>
             <input
@@ -41,7 +41,7 @@ const Settings = () => {
       </div>
 
       <div className={`${styles.card_view} ${styles.settings_toggle}`}>
-        <h2>Windspeed Units</h2>
+        <h3>Windspeed Units</h3>
         <div className={styles.radio_group}>
           <div className={styles.unit_toggle}>
             <input
@@ -73,7 +73,7 @@ const Settings = () => {
       </div>
 
       <div className={`${styles.card_view} ${styles.settings_toggle}`}>
-        <h2>AQI Index</h2>
+        <h3>AQI Index</h3>
         <div className={styles.radio_group}>
           <div className={styles.unit_toggle}>
             <input
@@ -103,8 +103,51 @@ const Settings = () => {
           </div>
         </div>
       </div>
+
+      <h1 className={styles.settings_heading}>Display</h1>
+      <div className={`${styles.card_view} ${styles.settings_toggle}`}>
+        <h3>Theme</h3>
+        <div className={styles.radio_group}>
+          <div className={styles.unit_toggle}>
+            <input
+              type="radio"
+              id="light"
+              name="light"
+              value="light"
+              checked={theme === "light"}
+              onChange={() => {
+                toggleTheme();
+              }}
+            />
+            <label htmlFor="Light">Light</label>
+          </div>
+          <div className={styles.unit_toggle}>
+            <input
+              type="radio"
+              id="dark"
+              name="dark"
+              value="dark"
+              checked={theme === "dark"}
+              onChange={() => {
+                toggleTheme();
+              }}
+            />
+            <label htmlFor="dark">Dark</label>
+          </div>
+        </div>
+      </div>
     </div>
   );
-};
 
+  function toggleTheme(): void {
+    // If the current theme is light, set it to dark
+    if (theme === "light") {
+      setTheme("dark");
+      document.documentElement.classList.add("dark");
+    } else {
+      setTheme("light");
+      document.documentElement.classList.remove("dark");
+    }
+  }
+};
 export default Settings;
