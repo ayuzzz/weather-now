@@ -1,8 +1,8 @@
 import styles from "@/styles/dashboard.module.css";
 import { TbMapPinSearch } from "react-icons/tb";
 import { useState } from "react";
-import { fetchCity } from "@/utils/fetchWeatherData";
 import { useAppContext } from "@/contexts/appContext";
+import { fetchCity } from "@/utils/locationAndMapUtility";
 
 const Location = () => {
   const { currentCity, setCurrentCity } = useAppContext();
