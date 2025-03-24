@@ -3,7 +3,7 @@ import Location from "../location";
 import { AppProvider } from "@/contexts/appContext";
 
 describe("Location search input field", () => {
-  test("should have correct placeholder value", () => {
+  it("should have correct placeholder value", () => {
     render(
       <AppProvider>
         <Location />
@@ -17,7 +17,7 @@ describe("Location search input field", () => {
 });
 
 describe("Location search button", () => {
-  test("should be enabled", () => {
+  it("should be enabled", () => {
     render(
       <AppProvider>
         <Location />
