@@ -26,9 +26,12 @@ const Location = () => {
   return (
     <div className={styles.location}>
       <div className={styles.flex_center}>
-        <label className={styles.location_label}>Location</label>
+        <label className={styles.location_label} htmlFor="location">
+          Location
+        </label>
         <input
           className={styles.location_input}
+          id="location"
           name="location"
           type="text"
           placeholder="Search for a city"

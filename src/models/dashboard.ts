@@ -72,10 +72,3 @@ interface CurrentUnits {
   european_aqi: string; // EAQI
   weather_code: string;
 }
-
-interface Current {
-  time: string; // 2025-03-07T12:00
-  interval: number; // 3600
-  european_aqi: number; // 63
-  weather_code: number;
-}
