@@ -59,6 +59,7 @@ describe("CurrentWeather Component", () => {
       />
     );
 
+    expect(screen.getByText(/Current Weather/i)).toBeInTheDocument();
     expect(screen.getByText(/Now/i)).toBeInTheDocument();
     expect(screen.getByText("New York")).toBeInTheDocument();
     expect(screen.getByText(/Sunny\s*\|/i)).toBeInTheDocument();
