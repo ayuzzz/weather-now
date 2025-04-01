@@ -19,6 +19,7 @@
 - **Maps & Data**: Leaflet.js, OpenWeather API, Overpass API
 - **State Management**: React Context API
 - **Unit Testing**: Jest, React Testing Library
+- **Container support**: Docker file is provided to run in a containzerized environment
 
 ## Installation / Setup
 > Make sure you have Node.js and npm/yarn installed.
