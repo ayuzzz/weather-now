@@ -18,41 +18,42 @@ const WeatherMap = () => {
   const [cityWeatherData, setCityWeatherData] = useState<CityMarker[]>([]);
 
   useEffect(() => {
-    debugger;
     async function fetchNearbyCitiesAndMapData() {
+      // Set map center first (no await needed)
       setMapCenter([currentCity.latitude, currentCity.longitude]);
 
-      let latitudes: number[] = [];
-      let longitudes: number[] = [];
-
+      // Fetch cities and extract lat/long in one step (no manual pushing)
       const topCities = await fetchTopCities(currentCity.country);
+      const latitudes = topCities.map((city) => city.latitude);
+      const longitudes = topCities.map((city) => city.longitude);
 
-      topCities.forEach((city) => {
-        latitudes.push(city.latitude);
-        longitudes.push(city.longitude);
-      });
-
+      // Fetch weather data and map to CityMarker format
       const weatherData = await fetchMapData(
         latitudes,
         longitudes,
         weatherUnits
       );
-      setCityWeatherData(
-        weatherData.map(
-          (city, index) =>
-            ({
-              name: topCities[index].name,
-              coordinates: [latitudes[index], longitudes[index]],
-              temperature: city.current.temperature_2m,
-              windSpeed: city.current.wind_speed_10m,
-              rainfall: city.current.rain,
-            } as CityMarker)
-        )
+      const newCityWeatherData = weatherData.map(
+        (city, index) =>
+          ({
+            name: topCities[index].name,
+            coordinates: [latitudes[index], longitudes[index]],
+            temperature: city.current.temperature_2m,
+            windSpeed: city.current.wind_speed_10m,
+            rainfall: city.current.rain,
+          } as CityMarker)
       );
+
+      setCityWeatherData(newCityWeatherData);
     }
 
     fetchNearbyCitiesAndMapData();
-  }, [currentCity.latitude, currentCity.longitude, currentCity.country]);
+  }, [
+    currentCity.latitude,
+    currentCity.longitude,
+    currentCity.country,
+    weatherUnits,
+  ]);
 
   return cityWeatherData === undefined || cityWeatherData.length === 0 ? (
     "Loading Map Data ..."
