@@ -18,6 +18,7 @@
 - **UI**: CSS Modules (with Theme Support)
 - **Maps & Data**: Leaflet.js, OpenWeather API, Overpass API
 - **State Management**: React Context API
+- **Unit Testing**: Jest, React Testing Library
 
 ## Installation / Setup
 > Make sure you have Node.js and npm/yarn installed.
