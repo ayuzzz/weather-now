@@ -1,0 +1,32 @@
+.breadcrumbs{
+    display: flex;
+    align-items: flex-start;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.breadcrumb{
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-color);    
+}
+
+.breadcrumb_separator{
+    color: #000;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.breadcrumb_text{
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.breadcrumb_text:hover, .breadcrumb_text:focus {
+    color: #634AFFFF;
+    text-decoration: none;
+}
