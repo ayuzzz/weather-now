@@ -11,15 +11,12 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { useAppContext } from "@/contexts/appContext";
 
 const TemperatureTrend = ({
   hourlyWeatherData,
 }: {
   hourlyWeatherData: HourlyForecasts | undefined;
 }) => {
-  const { weatherUnits } = useAppContext();
-
   const chartData =
     hourlyWeatherData === undefined
       ? undefined

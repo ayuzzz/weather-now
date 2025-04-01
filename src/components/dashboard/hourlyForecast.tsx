@@ -10,7 +10,7 @@ const HourlyForecast = ({
 }) => {
   const { weatherUnits } = useAppContext();
 
-  const now = new Date();
+  const now = new Date(Date.now());
 
   // Get hour of the day in IST (12-hour format)
   const todayHour = new Intl.DateTimeFormat("en-IN", {

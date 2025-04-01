@@ -3,8 +3,8 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import CityMarkers, { CityMarker } from "./cityMarkers";
 import { useEffect, useState } from "react";
-import { fetchMapData, fetchTopCities } from "@/utils/fetchWeatherData";
 import { useAppContext } from "@/contexts/appContext";
+import { fetchMapData, fetchTopCities } from "@/utils/locationAndMapUtility";
 
 const WeatherMap = () => {
   const { currentCity, theme, weatherUnits } = useAppContext();

@@ -6,10 +6,10 @@ import CurrentWeather from "@/components/dashboard/currentWeather";
 import TemperatureTrend from "@/components/dashboard/temperatureTrend";
 import HourlyForecast from "@/components/dashboard/hourlyForecast";
 import WeeklyForecast from "@/components/dashboard/weeklyForecast";
-import { fetchWeatherData } from "@/utils/fetchWeatherData";
 import { useEffect, useState } from "react";
 import DashboardWeatherData from "@/models/dashboard";
 import { useAppContext } from "@/contexts/appContext";
+import { fetchWeatherData } from "@/utils/weatherDataUtility";
 
 export default function Dashboard() {
   const [weatherData, setWeatherData] = useState<DashboardWeatherData>(

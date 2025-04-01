@@ -1,8 +1,8 @@
 import styles from "@/styles/dashboard.module.css";
 import { TbMapPinSearch } from "react-icons/tb";
 import { useState } from "react";
-import { fetchCity } from "@/utils/fetchWeatherData";
 import { useAppContext } from "@/contexts/appContext";
+import { fetchCity } from "@/utils/locationAndMapUtility";
 
 const Location = () => {
   const { currentCity, setCurrentCity } = useAppContext();
@@ -26,9 +26,12 @@ const Location = () => {
   return (
     <div className={styles.location}>
       <div className={styles.flex_center}>
-        <label className={styles.location_label}>Location</label>
+        <label className={styles.location_label} htmlFor="location">
+          Location
+        </label>
         <input
           className={styles.location_input}
+          id="location"
           name="location"
           type="text"
           placeholder="Search for a city"

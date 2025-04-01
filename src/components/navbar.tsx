@@ -50,6 +50,7 @@ const Navbar = () => {
       </div>
       <div className={styles.theme_toggle}>
         <button
+          aria-label="Theme toggle"
           className={`${styles.btn_theme_toggle} ${styles.flex_center}`}
           onClick={toggleTheme}
         >
